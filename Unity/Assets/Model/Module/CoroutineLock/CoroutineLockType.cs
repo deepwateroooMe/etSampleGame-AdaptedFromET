@@ -1,8 +1,7 @@
-namespace ET
-{
-    public enum CoroutineLockType
-    {
+namespace ET {
+    public enum CoroutineLockType {
         None = 0,
+
         Location,                  // location进程上使用
         ActorLocationSender,       // ActorLocationSender中队列消息 
         Mailbox,                   // Mailbox中队列

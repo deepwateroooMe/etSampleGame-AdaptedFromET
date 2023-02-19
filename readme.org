@@ -1,0 +1,7 @@
+#+latex_class: cn-article
+#+title: ET
+#+author: deepwaterooo
+
+* 一个网络上搜到的ET 框架的应用 
+- 原仓库： https://gitee.com/NKG_admin/NKGMobaBasedOnET.git
+- 相比于ET 与斗地主框架，它很小很轻量，可以快速翻一遍。翻的过程中总是会有不少收获。
