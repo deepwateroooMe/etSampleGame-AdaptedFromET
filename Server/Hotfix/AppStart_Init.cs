@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Net;
 namespace ET {
     public class AppStart_Init : AEvent<EventType.AppStart> {
-
+// 把这个文件的基本牵连：看了一遍
         protected override async ETTask Run(EventType.AppStart args) {
             Game.Scene.AddComponent<ConfigComponent>();
             await ConfigComponent.Instance.LoadAsync();
@@ -25,7 +25,7 @@ namespace ET {
             Game.Scene.AddComponent<NetThreadComponent>();
             // 管理所有玩家信息
             Game.Scene.AddComponent<PlayerComponent>();
-            // 两个全局的函数处理封装组件
+            // 两个全局的函数处理封装组件：这些是这个游戏特有的，大概可以不用细看
             Game.Scene.AddComponent<B2S_CollisionDispatcherComponent>();
             Game.Scene.AddComponent<LSF_CmdDispatcherComponent>();
             Game.Scene.AddComponent<LSF_TickDispatcherComponent>();

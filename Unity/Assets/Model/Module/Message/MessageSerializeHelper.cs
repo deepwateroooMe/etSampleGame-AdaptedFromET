@@ -1,24 +1,18 @@
 ﻿using System;
 using System.IO;
 using MongoDB.Bson.IO;
-
-namespace ET
-{
-    public static class MessageSerializeHelper
-    {
+namespace ET {
+    public static class MessageSerializeHelper { // 这些地方，像是都被改编过，可以好好看一下
         public const ushort PbMaxOpcode = 55000;
         
         public const ushort JsonMinOpcode = 61000;
         
-        public static object DeserializeFrom(ushort opcode, Type type, MemoryStream memoryStream)
-        {
-            if (opcode < PbMaxOpcode)
-            {
+        public static object DeserializeFrom(ushort opcode, Type type, MemoryStream memoryStream) {
+            if (opcode < PbMaxOpcode) {
                 return ProtobufHelper.FromStream(type, memoryStream);
             }
             
-            if (opcode >= JsonMinOpcode)
-            {
+            if (opcode >= JsonMinOpcode) {
                 return JsonHelper.FromJson(type, memoryStream.GetBuffer().ToStr((int)memoryStream.Position, (int)(memoryStream.Length - memoryStream.Position)));
             }
 #if SERVER
@@ -27,17 +21,12 @@ namespace ET
             throw new Exception($"client no message: {opcode}");
 #endif
         }
-
-        public static void SerializeTo(ushort opcode, object obj, MemoryStream memoryStream)
-        {
-            if (opcode < PbMaxOpcode)
-            {
+        public static void SerializeTo(ushort opcode, object obj, MemoryStream memoryStream) {
+            if (opcode < PbMaxOpcode) {
                 ProtobufHelper.ToStream(obj, memoryStream);
                 return;
             }
-
-            if (opcode >= JsonMinOpcode)
-            {
+            if (opcode >= JsonMinOpcode) {
                 string s = JsonHelper.ToJson(obj);
                 byte[] bytes = s.ToUtf8();
                 memoryStream.Write(bytes, 0, bytes.Length);
@@ -49,26 +38,18 @@ namespace ET
             throw new Exception($"client no message: {opcode}");
 #endif
         }
-
-        public static MemoryStream GetStream(int count = 0)
-        {
+        public static MemoryStream GetStream(int count = 0) {
             MemoryStream stream;
-            if (count > 0)
-            {
+            if (count > 0) {
                 stream = new MemoryStream(count);
-            }
-            else
-            {
+            } else {
                 stream = new MemoryStream();
             }
-
             return stream;
         }
         
-        public static (ushort, MemoryStream) MessageToStream(object message, int count = 0)
-        {
+        public static (ushort, MemoryStream) MessageToStream(object message, int count = 0) {
             MemoryStream stream = GetStream(Packet.OpcodeLength + count);
-
             ushort opcode = OpcodeTypeComponent.Instance.GetOpcode(message.GetType());
             
             stream.Seek(Packet.OpcodeLength, SeekOrigin.Begin);
@@ -82,16 +63,13 @@ namespace ET
             return (opcode, stream);
         }
         
-        public static (ushort, MemoryStream) MessageToStream(long actorId, object message, int count = 0)
-        {
+        public static (ushort, MemoryStream) MessageToStream(long actorId, object message, int count = 0) {
             int actorSize = sizeof (long);
             MemoryStream stream = GetStream(actorSize + Packet.OpcodeLength + count);
-
             ushort opcode = OpcodeTypeComponent.Instance.GetOpcode(message.GetType());
             
             stream.Seek(actorSize + Packet.OpcodeLength, SeekOrigin.Begin);
             stream.SetLength(actorSize + Packet.OpcodeLength);
-
             // 写入actorId
             stream.GetBuffer().WriteTo(0, actorId);
             stream.GetBuffer().WriteTo(actorSize, opcode);

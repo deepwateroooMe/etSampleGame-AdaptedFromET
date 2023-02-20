@@ -32,7 +32,7 @@ namespace ET {
         }
     }
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct InstanceIdStruct {
+    public struct InstanceIdStruct { // 这里 54 个 bit 的分布为：从高到低位： (28)time|(18)process|(18)value
         public uint Time;   // 当年开始的tick 28bit
         public int Process; // 18bit
         public uint Value;  // 18bit

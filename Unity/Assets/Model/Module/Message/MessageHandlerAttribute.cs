@@ -1,6 +1,3 @@
-﻿namespace ET
-{
-    public class MessageHandlerAttribute: BaseAttribute
-    {
-    }
+﻿namespace ET {
+    public class MessageHandlerAttribute: BaseAttribute {}
 }

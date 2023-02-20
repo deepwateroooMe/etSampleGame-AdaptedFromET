@@ -1,30 +1,19 @@
 using System;
-
-namespace ET
-{
-    public class MessageProxy: IMHandler
-    {
+namespace ET {
+    public class MessageProxy: IMHandler {
         private readonly Type type;
         private readonly Action<Session, object> action;
-
-        public MessageProxy(Type type, Action<Session, object> action)
-        {
+        public MessageProxy(Type type, Action<Session, object> action) {
             this.type = type;
             this.action = action;
         }
-
-        public void Handle(Session session, object message)
-        {
+        public void Handle(Session session, object message) {
             this.action.Invoke(session, message);
         }
-
-        public Type GetMessageType()
-        {
+        public Type GetMessageType() {
             return this.type;
         }
-
-        public Type GetResponseType()
-        {
+        public Type GetResponseType() {
             return null;
         }
     }

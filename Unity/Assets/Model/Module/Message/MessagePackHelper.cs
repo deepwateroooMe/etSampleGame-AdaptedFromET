@@ -25,7 +25,7 @@ namespace ET
         {
             return MessagePack.MessagePackSerializer.Serialize(message);
         }
-        
+         
         public static void ToStream(object message, MemoryStream stream)
         {
             MessagePack.MessagePackSerializer.Serialize(stream, message);
