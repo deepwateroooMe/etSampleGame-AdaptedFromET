@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Net;
-
-
 namespace ET
-{
+{ 
 	[ActorMessageHandler]
 	public class Actor_TransferHandler : AMActorLocationRpcHandler<Unit, Actor_TransferRequest, Actor_TransferResponse>
 	{

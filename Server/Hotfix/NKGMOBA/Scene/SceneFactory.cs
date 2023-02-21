@@ -5,7 +5,6 @@ namespace ET {
             long instanceId = IdGenerater.Instance.GenerateInstanceId();
             return await Create(parent, instanceId, instanceId, parent.DomainZone(), name, sceneType);
         }
-        
         public static async ETTask<Scene> Create(Entity parent, long id, long instanceId, int zone, string name, SceneType sceneType, StartSceneConfig startSceneConfig = null) {
             await ETTask.CompletedTask;
             Scene scene = EntitySceneFactory.CreateScene(id, instanceId, zone, sceneType, name, parent);
