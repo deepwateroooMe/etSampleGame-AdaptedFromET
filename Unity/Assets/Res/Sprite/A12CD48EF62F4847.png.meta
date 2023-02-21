@@ -69,7 +69,7 @@ TextureImporter:
       213: 21300042
     second: A12CD48EF62F4847_21
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -90,6 +90,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -128,6 +129,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -155,6 +157,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -640,6 +654,29 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      A12CD48EF62F4847_17: 21300034
+      A12CD48EF62F4847_13: 21300026
+      A12CD48EF62F4847_5: 21300010
+      A12CD48EF62F4847_6: 21300012
+      A12CD48EF62F4847_12: 21300024
+      A12CD48EF62F4847_15: 21300030
+      A12CD48EF62F4847_9: 21300018
+      A12CD48EF62F4847_4: 21300008
+      A12CD48EF62F4847_10: 21300020
+      A12CD48EF62F4847_3: 21300006
+      A12CD48EF62F4847_1: 21300002
+      A12CD48EF62F4847_2: 21300004
+      A12CD48EF62F4847_16: 21300032
+      A12CD48EF62F4847_7: 21300014
+      A12CD48EF62F4847_8: 21300016
+      A12CD48EF62F4847_19: 21300038
+      A12CD48EF62F4847_0: 21300000
+      A12CD48EF62F4847_14: 21300028
+      A12CD48EF62F4847_21: 21300042
+      A12CD48EF62F4847_18: 21300036
+      A12CD48EF62F4847_11: 21300022
+      A12CD48EF62F4847_20: 21300040
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

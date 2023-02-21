@@ -4,7 +4,7 @@ namespace ET {
     public class CoroutineLockComponentAwakeSystem: AwakeSystem<CoroutineLockComponent> {
         public override void Awake(CoroutineLockComponent self) {
             CoroutineLockComponent.Instance = self; // 创建实例化时，单例赋值
-            for (int i = 0; i < self.list.Capacity; ++i) { // 数据结构相对复杂一点儿，非值类型，实例化时，初始化链表里的8 个有序字典元素
+            for (int i = 0; i < self.list.Capacity; ++i) { // 数据结构相对复杂一点儿，非值类型，实例化时，初始化链表里的8 个有序字典元素。新版本里的添加移除都管理得更加系统化一点儿
                 self.list.Add(self.AddChildWithId<CoroutineLockQueueType>(++self.idGenerator));
             }
         }
@@ -21,17 +21,16 @@ namespace ET {
             self.minTime = 0;
         }
     }
-    
 // 这个重要类：感觉绝大部分看懂了，一小部分细节还没有看懂    
     public class CoroutineLockComponentUpdateSystem: UpdateSystem<CoroutineLockComponent> {
-        public override void Update(CoroutineLockComponent self) {
+        public override void Update(CoroutineLockComponent self) { // 这个每桢更新的原理，也要看懂：
             // 检测超时的CoroutineLock
             TimeoutCheck(self); // <<<<<<<<<< 定义在下面
-            int count = self.nextFrameRun.Count;
+            int count = self.nextFrameRun.Count; // 这一桢需要执行解锁的锁的个数。
             // 注意这里不能将this.nextFrameRun.Count 放到for循环中，因为循环过程中会有对象继续加入队列
             for (int i = 0; i < count; ++i) {
                 (CoroutineLockType coroutineLockType, long key) = self.nextFrameRun.Dequeue();
-                self.Notify(coroutineLockType, key, 0);
+                self.Notify(coroutineLockType, key, 0); // 任务的执行是 Notify()
             }
         }
         public void TimeoutCheck(CoroutineLockComponent self) {
@@ -71,6 +70,7 @@ namespace ET {
             }
         }
     }
+    
     public static class CoroutineLockComponentSystem {
         public static void NextFrameRun(this CoroutineLockComponent self, CoroutineLockType coroutineLockType, long key) {
             self.nextFrameRun.Enqueue((coroutineLockType, key)); // 仍然是，把下一桢必须得执行的（结构体）任务，缓存到缓存队列里，等到什么时候执行？直正回调FrameFinish? 之类的调用的时候？
@@ -82,14 +82,17 @@ namespace ET {
                 self.minTime = tillTime;
             }
         }
+        // 下面方法： key是actorId
         public static async ETTask<CoroutineLock> Wait(this CoroutineLockComponent self, CoroutineLockType coroutineLockType, long key, int time = 60000) {
+// 首先去list找到对应类型的CoroutineLockType，如果没有这个id的，那么加入到CoroutineLockType。然后直接返回结果
             CoroutineLockQueueType coroutineLockQueueType = self.list[(int) coroutineLockType]; // 字典：值为，锁队列 Queue<CoroutineLockInfo>
             if (!coroutineLockQueueType.TryGetValue(key, out CoroutineLockQueue queue)) { // <<<<<<<<<< queue
                 // 创建：从加工厂（对象池）创建一个字典里不存在元素 key 所对应的值， CoroutineLockQueue
                 coroutineLockQueueType.Add(key, self.AddChildWithId<CoroutineLockQueue>(++self.idGenerator, true)); // 只在大类型链表－值，字典结构里，添加了这个 key 的存在
                 // 上面的：只添加了【 key, 新生成的无名 Queue<CoroutineLockInfo>】键值对。常识一般添加协程锁，锁的时间 time>0, 那么真正锁的添加进队列是在上面 line 78 才真正添加锁进队列 
-                return self.CreateCoroutineLock(coroutineLockType, key, time, 1); // 仍然需要创建一把超时协程锁
+                return self.CreateCoroutineLock(coroutineLockType, key, time, 1); // 仍然需要创建一把超时协程锁。创建的时候， count ＝ 1
             }
+// 下面的： 如果此类型有这个id，创建一个ETTask，并且设置超时时间，最后开始等待这个ETTask完成
             ETTask<CoroutineLock> tcs = ETTask<CoroutineLock>.Create(true); // 创建：实则是，从对象池中去取一个，返回类型为 CoroutineLock 类型的 ETTask 任务
             queue.Add(tcs, time); // 更新键升序字典里，相应键 key 的值（多添加一把超时锁）
             return await tcs;
@@ -103,26 +106,32 @@ namespace ET {
             return coroutineLock;
         }
         
-// 这个方法里；一部分没有看懂
-        public static void Notify(this CoroutineLockComponent self, CoroutineLockType coroutineLockType, long key, int count) {
-            CoroutineLockQueueType coroutineLockQueueType = self.list[(int) coroutineLockType]; // 字典：值为，锁队列 Queue<CoroutineLock>
+//  这个方法【没看懂】：是真正执行创建锁的异步任务的？感觉这里还有一点儿昏昏的？当CoroutineLock被释放时，将会利用携程锁组件进行通知Notify
+        public static void Notify(this CoroutineLockComponent self, CoroutineLockType coroutineLockType, long key, int count) { //count: 这个参数要再理解一下 
+            // 通过类型从list取CoroutineLockType， 如果里面没有这ActorId那么就return
+            CoroutineLockQueueType coroutineLockQueueType = self.list[(int) coroutineLockType]; // 字典：值为，锁队列 Queue<CoroutineLockInfo> = CoroutineLockQueue
             if (!coroutineLockQueueType.TryGetValue(key, out CoroutineLockQueue queue)) {
                 return;
             }
-            if (queue.Count == 0) { // 接上面 line 99, 如果为空，直接移除
+            // 查看CoroutineLockQueue里有东西没，没东西就直接回收
+            if (queue.Count == 0) { // 下面的判断：上面添加锁不曾设置超时是极少可能会发生的。绝大部分原因，多是因为队列中的协程锁可能超时已经被删除了，导致空队列 
                 coroutineLockQueueType.Remove(key);
                 return;
             }
+            // 【看到网上一处解释说，不一定对，但极可能是这样的】
+            // 然后判断迭代次数，大于10放到下一帧去执行
+            // 因为协程锁 dispose 会调用下一个协程，如果队列过长，堆栈可能溢出，所以这里人为限制了一次最多递归多少层。根据是否服务器与否来决定递归的深度
 #if SERVER
             const int frameCoroutineCount = 5;
 #else
             const int frameCoroutineCount = 10;
 #endif
-            if (count > frameCoroutineCount) { // 不明白：这里为什么要这么设置 ?
+            if (count > frameCoroutineCount) { // 递归深度超出了，记录一下，推迟到下一桢再执行
                 self.NextFrameRun(coroutineLockType, key); // 把一个队列 Queue<CoroutineLockInfo> 里的超时锁全部执行锁，全部缓存待执行？
                 return;
             }
-            CoroutineLockInfo coroutineLockInfo = queue.Dequeue(); // 这里有一点儿不有想明白：这个系统队列里的一队列，怎么就能保证第一个取出来的超时锁就是时间最早的？这个时间关系是如何保证的？
+            // 小于10就从CoroutineLockQueue中取出最早放的，设置ETTask的结果
+            CoroutineLockInfo coroutineLockInfo = queue.Dequeue(); // 这里有一点儿不有想明白：这个系统队列里的多个超时锁，怎么就能保证第一个取出来的超时锁就是时间最早的？这个时间关系是如何保证的？
             coroutineLockInfo.Tcs.SetResult(self.CreateCoroutineLock(coroutineLockType, key, coroutineLockInfo.Time, count));
         }
     }

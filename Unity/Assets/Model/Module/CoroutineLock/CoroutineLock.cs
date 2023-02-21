@@ -11,7 +11,7 @@ namespace ET {
     [ObjectSystem]
     public class CoroutineLockDestroySystem: DestroySystem<CoroutineLock> {
         public override void Destroy(CoroutineLock self) {
-            if (self.coroutineLockType != CoroutineLockType.None) {
+            if (self.coroutineLockType != CoroutineLockType.None) { // 当锁还没有释放，要调用通知解锁。 count 是什么意思呢？
                 CoroutineLockComponent.Instance.Notify(self.coroutineLockType, self.key, self.count + 1);
             } else {
                 // CoroutineLockType.None说明协程锁超时了

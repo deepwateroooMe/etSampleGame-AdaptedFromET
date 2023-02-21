@@ -555,7 +555,7 @@ TextureImporter:
       213: 21300366
     second: Clarity_HUDAtlas_183
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -576,6 +576,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -614,6 +615,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -641,6 +643,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
     buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -4528,6 +4542,191 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Clarity_HUDAtlas_120: 21300240
+      Clarity_HUDAtlas_147: 21300294
+      Clarity_HUDAtlas_91: 21300182
+      Clarity_HUDAtlas_44: 21300088
+      Clarity_HUDAtlas_29: 21300058
+      Clarity_HUDAtlas_41: 21300082
+      Clarity_HUDAtlas_79: 21300158
+      Clarity_HUDAtlas_94: 21300188
+      Clarity_HUDAtlas_145: 21300290
+      Clarity_HUDAtlas_103: 21300206
+      Clarity_HUDAtlas_21: 21300042
+      Clarity_HUDAtlas_168: 21300336
+      Clarity_HUDAtlas_178: 21300356
+      Clarity_HUDAtlas_96: 21300192
+      Clarity_HUDAtlas_11: 21300022
+      Clarity_HUDAtlas_114: 21300228
+      Clarity_HUDAtlas_64: 21300128
+      Clarity_HUDAtlas_172: 21300344
+      Clarity_HUDAtlas_124: 21300248
+      Clarity_HUDAtlas_109: 21300218
+      Clarity_HUDAtlas_181: 21300362
+      Clarity_HUDAtlas_31: 21300062
+      Clarity_HUDAtlas_20: 21300040
+      Clarity_HUDAtlas_13: 21300026
+      Clarity_HUDAtlas_80: 21300160
+      Clarity_HUDAtlas_165: 21300330
+      Clarity_HUDAtlas_34: 21300068
+      Clarity_HUDAtlas_128: 21300256
+      Clarity_HUDAtlas_173: 21300346
+      Clarity_HUDAtlas_138: 21300276
+      Clarity_HUDAtlas_81: 21300162
+      Clarity_HUDAtlas_58: 21300116
+      Clarity_HUDAtlas_16: 21300032
+      Clarity_HUDAtlas_65: 21300130
+      Clarity_HUDAtlas_42: 21300084
+      Clarity_HUDAtlas_158: 21300316
+      Clarity_HUDAtlas_111: 21300222
+      Clarity_HUDAtlas_4: 21300008
+      Clarity_HUDAtlas_129: 21300258
+      Clarity_HUDAtlas_49: 21300098
+      Clarity_HUDAtlas_143: 21300286
+      Clarity_HUDAtlas_68: 21300136
+      Clarity_HUDAtlas_3: 21300006
+      Clarity_HUDAtlas_14: 21300028
+      Clarity_HUDAtlas_153: 21300306
+      Clarity_HUDAtlas_134: 21300268
+      Clarity_HUDAtlas_52: 21300104
+      Clarity_HUDAtlas_18: 21300036
+      Clarity_HUDAtlas_141: 21300282
+      Clarity_HUDAtlas_25: 21300050
+      Clarity_HUDAtlas_136: 21300272
+      Clarity_HUDAtlas_130: 21300260
+      Clarity_HUDAtlas_163: 21300326
+      Clarity_HUDAtlas_156: 21300312
+      Clarity_HUDAtlas_87: 21300174
+      Clarity_HUDAtlas_6: 21300012
+      Clarity_HUDAtlas_26: 21300052
+      Clarity_HUDAtlas_126: 21300252
+      Clarity_HUDAtlas_85: 21300170
+      Clarity_HUDAtlas_27: 21300054
+      Clarity_HUDAtlas_46: 21300092
+      Clarity_HUDAtlas_84: 21300168
+      Clarity_HUDAtlas_100: 21300200
+      Clarity_HUDAtlas_70: 21300140
+      Clarity_HUDAtlas_54: 21300108
+      Clarity_HUDAtlas_135: 21300270
+      Clarity_HUDAtlas_154: 21300308
+      Clarity_HUDAtlas_63: 21300126
+      Clarity_HUDAtlas_75: 21300150
+      Clarity_HUDAtlas_171: 21300342
+      Clarity_HUDAtlas_74: 21300148
+      Clarity_HUDAtlas_131: 21300262
+      Clarity_HUDAtlas_142: 21300284
+      Clarity_HUDAtlas_48: 21300096
+      Clarity_HUDAtlas_10: 21300020
+      Clarity_HUDAtlas_164: 21300328
+      Clarity_HUDAtlas_60: 21300120
+      Clarity_HUDAtlas_123: 21300246
+      Clarity_HUDAtlas_112: 21300224
+      Clarity_HUDAtlas_43: 21300086
+      Clarity_HUDAtlas_150: 21300300
+      Clarity_HUDAtlas_50: 21300100
+      Clarity_HUDAtlas_170: 21300340
+      Clarity_HUDAtlas_118: 21300236
+      Clarity_HUDAtlas_174: 21300348
+      Clarity_HUDAtlas_88: 21300176
+      Clarity_HUDAtlas_0: 21300000
+      Clarity_HUDAtlas_144: 21300288
+      Clarity_HUDAtlas_152: 21300304
+      Clarity_HUDAtlas_97: 21300194
+      Clarity_HUDAtlas_22: 21300044
+      Clarity_HUDAtlas_117: 21300234
+      Clarity_HUDAtlas_137: 21300274
+      Clarity_HUDAtlas_71: 21300142
+      Clarity_HUDAtlas_56: 21300112
+      Clarity_HUDAtlas_5: 21300010
+      Clarity_HUDAtlas_51: 21300102
+      Clarity_HUDAtlas_45: 21300090
+      Clarity_HUDAtlas_78: 21300156
+      Clarity_HUDAtlas_55: 21300110
+      Clarity_HUDAtlas_30: 21300060
+      Clarity_HUDAtlas_35: 21300070
+      Clarity_HUDAtlas_15: 21300030
+      Clarity_HUDAtlas_76: 21300152
+      Clarity_HUDAtlas_89: 21300178
+      Clarity_HUDAtlas_159: 21300318
+      Clarity_HUDAtlas_115: 21300230
+      Clarity_HUDAtlas_37: 21300074
+      Clarity_HUDAtlas_160: 21300320
+      Clarity_HUDAtlas_39: 21300078
+      Clarity_HUDAtlas_23: 21300046
+      Clarity_HUDAtlas_176: 21300352
+      Clarity_HUDAtlas_140: 21300280
+      Clarity_HUDAtlas_183: 21300366
+      Clarity_HUDAtlas_127: 21300254
+      Clarity_HUDAtlas_40: 21300080
+      Clarity_HUDAtlas_121: 21300242
+      Clarity_HUDAtlas_7: 21300014
+      Clarity_HUDAtlas_92: 21300184
+      Clarity_HUDAtlas_90: 21300180
+      Clarity_HUDAtlas_12: 21300024
+      Clarity_HUDAtlas_69: 21300138
+      Clarity_HUDAtlas_17: 21300034
+      Clarity_HUDAtlas_28: 21300056
+      Clarity_HUDAtlas_73: 21300146
+      Clarity_HUDAtlas_149: 21300298
+      Clarity_HUDAtlas_139: 21300278
+      Clarity_HUDAtlas_151: 21300302
+      Clarity_HUDAtlas_108: 21300216
+      Clarity_HUDAtlas_148: 21300296
+      Clarity_HUDAtlas_57: 21300114
+      Clarity_HUDAtlas_95: 21300190
+      Clarity_HUDAtlas_162: 21300324
+      Clarity_HUDAtlas_102: 21300204
+      Clarity_HUDAtlas_167: 21300334
+      Clarity_HUDAtlas_47: 21300094
+      Clarity_HUDAtlas_72: 21300144
+      Clarity_HUDAtlas_106: 21300212
+      Clarity_HUDAtlas_93: 21300186
+      Clarity_HUDAtlas_179: 21300358
+      Clarity_HUDAtlas_38: 21300076
+      Clarity_HUDAtlas_177: 21300354
+      Clarity_HUDAtlas_125: 21300250
+      Clarity_HUDAtlas_155: 21300310
+      Clarity_HUDAtlas_98: 21300196
+      Clarity_HUDAtlas_83: 21300166
+      Clarity_HUDAtlas_122: 21300244
+      Clarity_HUDAtlas_104: 21300208
+      Clarity_HUDAtlas_67: 21300134
+      Clarity_HUDAtlas_53: 21300106
+      Clarity_HUDAtlas_77: 21300154
+      Clarity_HUDAtlas_61: 21300122
+      Clarity_HUDAtlas_2: 21300004
+      Clarity_HUDAtlas_1: 21300002
+      Clarity_HUDAtlas_169: 21300338
+      Clarity_HUDAtlas_182: 21300364
+      Clarity_HUDAtlas_32: 21300064
+      Clarity_HUDAtlas_59: 21300118
+      Clarity_HUDAtlas_133: 21300266
+      Clarity_HUDAtlas_132: 21300264
+      Clarity_HUDAtlas_146: 21300292
+      Clarity_HUDAtlas_8: 21300016
+      Clarity_HUDAtlas_166: 21300332
+      Clarity_HUDAtlas_116: 21300232
+      Clarity_HUDAtlas_36: 21300072
+      Clarity_HUDAtlas_33: 21300066
+      Clarity_HUDAtlas_119: 21300238
+      Clarity_HUDAtlas_9: 21300018
+      Clarity_HUDAtlas_175: 21300350
+      Clarity_HUDAtlas_66: 21300132
+      Clarity_HUDAtlas_99: 21300198
+      Clarity_HUDAtlas_157: 21300314
+      Clarity_HUDAtlas_110: 21300220
+      Clarity_HUDAtlas_24: 21300048
+      Clarity_HUDAtlas_86: 21300172
+      Clarity_HUDAtlas_101: 21300202
+      Clarity_HUDAtlas_107: 21300214
+      Clarity_HUDAtlas_180: 21300360
+      Clarity_HUDAtlas_161: 21300322
+      Clarity_HUDAtlas_62: 21300124
+      Clarity_HUDAtlas_19: 21300038
+      Clarity_HUDAtlas_113: 21300226
+      Clarity_HUDAtlas_82: 21300164
+      Clarity_HUDAtlas_105: 21300210
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
